@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "auth and register backend part of the project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programmeur77/auth-register-nodejs.git"
+  },
+  "author": "Benoît Puech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programmeur77/auth-register-nodejs/issues"
+  },
+  "homepage": "https://github.com/programmeur77/auth-register-nodejs#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.0.3"
+  }
+}
