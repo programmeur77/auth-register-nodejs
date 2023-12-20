@@ -8,3 +8,5 @@ frontend/auth-reg-front/node_modules
 # Backend
 backend/package-lock.json
 backend/node_modules
+backend/config/db-connect.js
+backend/.env
