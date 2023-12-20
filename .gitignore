@@ -1,2 +1,6 @@
 # General Config files 
 .prettierrc
+
+# Frontend
+frontend/auth-reg-front/package-lock.json
+frontend/auth-reg-front/node_modules
