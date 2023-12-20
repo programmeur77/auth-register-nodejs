@@ -4,3 +4,7 @@
 # Frontend
 frontend/auth-reg-front/package-lock.json
 frontend/auth-reg-front/node_modules
+
+# Backend
+backend/package-lock.json
+backend/node_modules
