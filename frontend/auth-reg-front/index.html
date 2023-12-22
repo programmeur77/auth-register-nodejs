@@ -1,13 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <script type="module" src="./js/index.js" defer></script>
+    <title>Login</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <h1>Login</h1>
+    <form action="/" method="get" class="login-form">
+      <label for="email">email :</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="login-form__email"
+        placeholder="email"
+        required
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="login-form__password"
+        placeholder="password"
+        required
+      />
+      <p class="login-form__error"></p>
+      <button class="login-form__submit">Me connecter</button>
+    </form>
   </body>
 </html>
