@@ -19,6 +19,11 @@ const getOneUser = async (req, res) => {
       .status(401)
       .json({ error: 'Invalid email/password pair', status: 401 });
 
+  if (!user.emailIsVerified)
+    return res
+      .status(403)
+      .json({ error: 'Email is not verified', status: 403 });
+
   res.status(200).json({
     id: user._id,
     uniqueKey: user.uniqueKey,
