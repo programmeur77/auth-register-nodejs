@@ -10,3 +10,4 @@ backend/package-lock.json
 backend/node_modules
 backend/config/db-connect.js
 backend/.env
+backend/user.http
