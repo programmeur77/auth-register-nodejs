@@ -7,17 +7,21 @@ const submit = document.querySelector('.login-form__submit');
 let error = '';
 
 const fetchUserLogin = async (email, password) => {
-  const userEnteredData = await fetch('http://localhost:4000/api/user/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: {
-      email: email,
-      password: password,
-    },
-  });
+  let user = { email: email, password: password };
+  const userCreadentials = await fetch(
+    'http://localhost:4000/api/user/signin',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    }
+  );
 
-  const userResponse = userEnteredData.json();
-  console.log(userResponse);
+  const userLoginResponse = await userCreadentials.json();
+
+  console.log(userLoginResponse);
 };
 
 email.addEventListener('focusout', (e) => {
