@@ -8,20 +8,17 @@ let error = '';
 
 const fetchUserLogin = async (email, password) => {
   let user = { email: email, password: password };
-  const userCreadentials = await fetch(
-    'http://localhost:4000/api/user/signin',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    }
-  );
+  const userCredentials = await fetch('http://localhost:4000/api/user/signin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
 
-  const userLoginResponse = await userCreadentials.json();
+  const userLoginResponse = await userCredentials.json();
 
-  console.log(userLoginResponse);
+  return userLoginResponse;
 };
 
 email.addEventListener('focusout', (e) => {
@@ -46,5 +43,22 @@ password.addEventListener('focusout', (e) => {
 
 submit.addEventListener('click', (e) => {
   e.preventDefault();
-  fetchUserLogin(email.value, password.value);
+  const fetchResponse = fetchUserLogin(email.value, password.value)
+    .then((data) => {
+      switch (data.status) {
+        case 401:
+          error = data.error;
+          formError.innerText = error;
+          break;
+
+        case 403:
+          window.location.replace('./../pages/email-verify.html');
+          break;
+
+        default:
+          window.location.replace('./../pages/user-page.html');
+          break;
+      }
+    })
+    .catch((error) => console.log(error));
 });
