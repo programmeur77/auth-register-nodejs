@@ -1,24 +1,27 @@
 require('dotenv').config();
 
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const userRoutes = require('./routes/user-routes');
-const { dbConnect } = require('./config/db-connect');
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/api/user', userRoutes);
 
-if (dbConnect) {
-    console.log('MongoDB connection success');
-  app.listen(4000);
-} else {
-    console.log('MongoDB connection failed');
-}
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(4000, () => {
+      console.log(`Listening on port ${4000}`);
+    });
 
-app.get('/', (req, res, next) => {
-  res.status(200).json({ message: 'Server running !' });
-});
-
+    console.log('Connection to DB succeeded');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
