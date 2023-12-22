@@ -6,7 +6,7 @@ const { limiter } = require('./../middlewares/rate-limiter');
 
 const router = express.Router();
 
-router.get('/signin', limiter, getOneUser);
+router.post('/signin', getOneUser);
 router.post('/register', createUser);
 
 module.exports = router;
