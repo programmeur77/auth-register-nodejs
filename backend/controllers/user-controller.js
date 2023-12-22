@@ -3,8 +3,31 @@ const bcrypt = require('bcrypt');
 
 const User = require('./../models/User');
 
-const createUser = (req, res) => {
+const getOneUser = async (req, res) => {
+  const { email, password } = req.body;
 
+  const user = await User.findOne({ email: email });
+
+  if (!user)
+    return res
+      .status(401)
+      .json({ error: 'Invalid email/password pair', status: 401 });
+
+  const valid = await bcrypt.compare(password, user.password);
+  if (!valid)
+    return res
+      .status(401)
+      .json({ error: 'Invalid email/password pair', status: 401 });
+
+  res.status(200).json({
+    id: user._id,
+    uniqueKey: user.uniqueKey,
+    token: 'TOKEN',
+    status: 200,
+  });
+};
+
+const createUser = (req, res) => {
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -25,4 +48,4 @@ const createUser = (req, res) => {
     .catch((error) => res.status(400).json({ error, status: 400 }));
 };
 
-module.exports = { createUser };
+module.exports = { getOneUser, createUser };
