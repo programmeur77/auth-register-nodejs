@@ -45,6 +45,7 @@ submit.addEventListener('click', (e) => {
   e.preventDefault();
   const fetchResponse = fetchUserLogin(email.value, password.value)
     .then((data) => {
+      console.log(data);
       switch (data.status) {
         case 401:
           error = data.error;
@@ -56,6 +57,7 @@ submit.addEventListener('click', (e) => {
           break;
 
         default:
+          document.cookie = `userId=${data.id}`;
           window.location.replace('./../pages/user-page.html');
           break;
       }
