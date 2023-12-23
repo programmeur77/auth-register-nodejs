@@ -1,13 +1,11 @@
-const { rateLimit } = require('express-rate-limiter');
+const { rateLimit } = require('express-rate-limit');
 
-const limiter = () => {
+const limitRate = () => {
   rateLimit({
-    windowMs: 60 * 1000, // 1 hour in Milliseconds
-    max: 5, // Maximum 5 requests per hour
-    message: 'You have reached the maximum limit of request for the next hour',
-    standardHeaders: true,
-    legacyHeaders: true,
+    windowMs: 5 * 60 * 1000,
+    max: 5,
+    message: 'Too many attemps, try again in 5 minutes',
   });
 };
 
-module.exports = { limiter };
+module.exports = { limitRate };
