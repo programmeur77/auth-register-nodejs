@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const userRoutes = require('./routes/user-routes');
+const mailRoutes = require('./routes/mail-routes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user', userRoutes);
+app.use('/api/mail', mailRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
