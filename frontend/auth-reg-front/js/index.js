@@ -64,3 +64,8 @@ submit.addEventListener('click', (e) => {
     })
     .catch((error) => console.log(error));
 });
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Yo');
+});
